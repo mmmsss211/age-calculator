@@ -1,18 +1,61 @@
-import Birthday from '@forms/Birthday'
+import DefaultDisplay from "@screens/DefaultDisplay";
+import DateForm from "@forms/DateForm";
+import { useStore } from "@store/store"
+import { useEffect, useState } from "react";
 
 interface cardProps {
-    style: string
+  style: string;
 }
 
-const roundedSmall = '24px';
-const roundedBig = '200px';
+const Card = ({ style }: cardProps) => {
+  
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const years = useStore((state) => state.years)
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const months = useStore((state) => state.months)
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const days = useStore((state) => state.days)
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const myYear = useStore((state) => state.myYear);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const myMonth = useStore((state) => state.myMonth);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const myDay = useStore((state) => state.myDay);
 
-const card = ({style}:cardProps) => {
+  const [ageYears, setAgeYears] = useState("");
+  const [ageMonths, setAgeMonths] = useState("");
+  const [ageDays, setAgeDays] = useState("");
+
+  const maxYear = new Date().getFullYear() - 1;
+
+  const ageCalculator = () => {
+    // Convert the input strings to Date objects
+   const birthday = new Date(`${myYear}-${myMonth}-${myDay}`);
+   const now = new Date();
+   
+   // Calculate the age in years, months, and days
+   const ageInYears =  now.getFullYear() - birthday.getFullYear();
+   const ageInMonths = now.getMonth() - birthday.getMonth();
+   const ageInDays = now.getDate() - birthday.getDate();
+
+    // Set the state variables
+    setAgeYears(`${ageInYears}`);
+    setAgeDays(`${ageInMonths}`);
+    setAgeMonths(`${ageInDays}`);
+ }
+
   return (
-    <main className={`${style} bg-white min-w-[840px] p-[56px] rounded-t-[${roundedSmall}] rounded-bl-[${roundedSmall}] rounded-br-[${roundedBig}]`}>
-        <Birthday />
+    <main
+      className={`${style} bg-white min-w-[840px] p-[56px] rounded-t-[24px] rounded-bl-[24px] rounded-br-[200px]`}
+    >
+      <DateForm ageCalculator={ageCalculator}/>
+      <section className="flex flex-col items-start">
+        <DefaultDisplay count={ageYears} label={"year"} minValue={1900} maxValue={maxYear} checkErrorOn={myYear}/>
+        <DefaultDisplay count={ageMonths} label={"month"} minValue={1} maxValue={12} checkErrorOn={myMonth} />
+        <DefaultDisplay count={ageDays} label={"day"} minValue={0} maxValue={31} checkErrorOn={myDay} />
+      </section>
     </main>
-  )
-}
+  );
+};
 
-export default card
+export default Card;

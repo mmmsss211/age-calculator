@@ -20,6 +20,10 @@
       "@layouts/*": ["./components/layouts/*"],
       "@forms/*": ["./components/forms/*"],
       "@buttons/*": ["./components/buttons/*"],
+      "@misc/*": ["./components/misc/*"],
+      "@screens/*": ["./components/screens/*"],
+      "@assets/*": ["./public/*"],
+      "@store/*": ["./store/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
