@@ -4,14 +4,12 @@ type Dates = {
     years: number;
     months: number;
     days: number;
-    currentDate: any;
 }
 
 type Input = {
     myYear: number;
     myMonth: number;
     myDay: number;
-    myBirth: any;
 }
 
 type Action = {
