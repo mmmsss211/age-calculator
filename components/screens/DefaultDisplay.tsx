@@ -10,7 +10,7 @@ const DefaultDisplay = ({ count, label, minValue, maxValue, checkErrorOn }: defa
   return (
     <>
       <section className="font-extrabold italic text-[#151515] text-[104px] flex flex-row items-start gap-2 leading-[110%]">
-        <span className="text-[#854DFF]">{count === 0 ? '- -' : count}</span>
+        <span className="text-[#854DFF]">{count === 0 || isNaN(count) ? '- -' : count}</span>
         <span>{label}{count > 1 ? 's' : ''}</span>
       </section>
     </>

@@ -34,14 +34,16 @@ const Card = ({ style }: cardProps) => {
    const now = new Date();
    
    // Calculate the age in years, months, and days
-   const ageInYears =  now.getFullYear() - birthday.getFullYear();
-   const ageInMonths = now.getMonth() - birthday.getMonth();
-   const ageInDays = now.getDate() - birthday.getDate();
+   const ageInYears =  Math.abs(now.getFullYear() - birthday.getFullYear());
+   const ageInMonths = Math.abs(now.getMonth() - birthday.getMonth());
+   const ageInDays = Math.abs(now.getDate() - birthday.getDate());
+
+   console.log(ageInYears, ageInMonths, ageInDays);
 
     // Set the state variables
     setAgeYears(`${ageInYears}`);
-    setAgeDays(`${ageInMonths}`);
-    setAgeMonths(`${ageInDays}`);
+    setAgeDays(`${ageInDays}`);
+    setAgeMonths(`${ageInMonths}`);
  }
 
   return (

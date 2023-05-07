@@ -26,7 +26,7 @@ const Input = ({ date, label, placeholder, id, setDate, min, max, maxLength, cli
           id={id}
           type="text"
           placeholder={placeholder}
-          className="max-h-[72px] border border-solid border-[#DCDCDC] px-6 py-3 w-[160px] placeholder:opacity-50 font-bold text-[32px] leading-[48px] rounded-lg text-[#151515] focus:border focus:border-solid focus:border-[#854DFF] focus:outline-none"
+          className={`max-h-[72px] border border-solid px-6 py-3 w-[160px] placeholder:opacity-50 font-bold text-[32px] leading-[48px] rounded-lg text-[#151515] focus:border focus:border-solid focus:outline-none ${date < min || date > max ? 'border-[#FF5959] focues:border-[#FF5959]' : 'border-[#DCDCDC] focus:border-[#854DFF]'}`}
           onChange={(e) => setDate(parseInt(e.target.value))}
           maxLength={maxLength}
         />
