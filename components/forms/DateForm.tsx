@@ -9,18 +9,18 @@ interface Values {
     month?: number;
     day?: number;
     ageCalculator: any;
+    clicked?: boolean;
+    setClicked?: any;
 }
 
-const DateForm = ({ageCalculator}:Values) => {
+const DateForm = ({ageCalculator, clicked, setClicked}:Values) => {
   // Values for the date
   const [myYear, updateMyYear] = useStore((state) => [state.myYear, state.updateMyYear]);
   const [myMonth, updateMyMonth] = useStore((state) => [state.myMonth, state.updateMyMonth]);
   const [myDay, updateMyDay] = useStore((state) => [state.myDay, state.updateMyDay]);
 
   // Track if button has been clicked
-  const [clicked, setClicked] = useState(false);
 
-  
   
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -35,7 +35,7 @@ const DateForm = ({ageCalculator}:Values) => {
           <Birthday clicked={clicked} />
           <mark className="flex flex-row items-center bg-transparent">
             <Line />
-            <Default handleSubmit={handleSubmit} />
+            <Default handleSubmit={handleSubmit}/>
           </mark>
         </form>
     </>

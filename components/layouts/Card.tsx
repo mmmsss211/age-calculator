@@ -26,6 +26,8 @@ const Card = ({ style }: cardProps) => {
   const [ageMonths, setAgeMonths] = useState("");
   const [ageDays, setAgeDays] = useState("");
 
+  const [clicked, setClicked] = useState(false);
+
   const maxYear = new Date().getFullYear() - 1;
 
   const ageCalculator = () => {
@@ -50,7 +52,7 @@ const Card = ({ style }: cardProps) => {
     <main
       className={`${style} bg-white min-w-[840px] p-[56px] rounded-t-[24px] rounded-bl-[24px] rounded-br-[200px]`}
     >
-      <DateForm ageCalculator={ageCalculator}/>
+      <DateForm ageCalculator={ageCalculator} clicked={clicked} setClicked={setClicked}/>
       <section className="flex flex-col items-start">
         <DefaultDisplay count={ageYears} label={"year"} minValue={1900} maxValue={maxYear} checkErrorOn={myYear}/>
         <DefaultDisplay count={ageMonths} label={"month"} minValue={1} maxValue={12} checkErrorOn={myMonth} />
